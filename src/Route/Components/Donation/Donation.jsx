@@ -20,11 +20,11 @@ const Donation = ({donateinf}) => {
             <div className="card card-side bg-base-100 shadow-xl gap-5" style={cardStyle}>
   <figure><img className=" w-full h-full" src={Picture} alt="Movie"/></figure>
   <div className="card-body">
-  <div className=" w-20 p-1 m-1 rounded-sm" style={cardStyle}>
+  <div className=" lg:w-20 p-1 m-1 rounded-sm" style={cardStyle}>
             <h2 className="flex justify-center items-center" style={cattext}>{Category}</h2>
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="lg:text-2xl text-sm font-bold text-gray-900">
             {Title}
         </h1>
         <h1 className="text-xl font-bold text-gray-700">

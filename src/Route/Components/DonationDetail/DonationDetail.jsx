@@ -99,9 +99,9 @@ const DonationDetail = ({carddetails}) => {
           <p>{Description}</p>
         </div>
       </div> */}
-      <div className="card mt-16 bg-base-100 shadow-xl bg-cover w-[1200px] ">
+      <div className="card mt-16 bg-base-100 shadow-xl bg-cover w-[1200px] p-2 ">
   <figure><img className=" w-full " src={Picture} alt="Shoes" /></figure>
-  <div className=" -mt-32 p-10 bg-black bg-opacity-30 bg-mix-blend-darken"><button onClick={handleDonateCare} className="p-3 rounded-md text-white " style={ButtonBg}>
+  <div className=" lg:-mt-32 -mt-12 lg:p-10 p-0 bg-black bg-opacity-30 bg-mix-blend-darken"><button onClick={handleDonateCare} className="p-3 rounded-md text-white " style={ButtonBg}>
             Donate {Price}
           </button></div>
   <div className="card-body">

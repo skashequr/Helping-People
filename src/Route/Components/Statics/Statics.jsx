@@ -1,55 +1,76 @@
-
-import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
-
-const data = [
-  { name: 'Category A', value: 3 },
-  { name: 'Category B', value: 3 },
-];
-
-const colors = ['#FF5733', '#33FF57']; // Define colors for each category
-
-// Calculate total value
-const totalValue = data.reduce((sum, item) => sum + item.value, 0);
-
-// Calculate percentages and add them to the data
-const dataWithPercentages = data.map((item, index) => ({
-  ...item,
-  percentage: (( 12 / totalValue) * 100).toFixed(2),
-
-  fill: colors[index], // Assign colors
-}));
+import React, { useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Label } from 'recharts';
 
 const Statics = () => {
+  const fixedDataCount = 12; 
+  const COLORS = ['#FF444A', '#00C49F'];
+
+  const [localStorageData, setLocalStorageData] = useState([]);
+
+  useEffect(() => {
+    // Retrieve data from local storage
+    const data = JSON.parse(localStorage.getItem("donation")) || [];
+    setLocalStorageData(data);
+  }, []);
+
+
+  // const totalLocalStorageValue = localStorageData.reduce((total, item) => total + item.value, 0);
+
+  const localStoragePercentage = (localStorageData.length / fixedDataCount) * 100;
+
+  const fixedDataPercentage = ((fixedDataCount - localStorageData.length) / fixedDataCount) * 100;
+
   return (
-    <div className=' flex justify-center items-center'>
-      <PieChart width={600} height={600}>
-      <Pie
-        data={dataWithPercentages}
-        dataKey="value"
-        nameKey="name"
-        cx="50%"
-        cy="50%"
-        outerRadius={100}
-        fill="#8884d8"
-        labelLine={false} // Hide label lines
-        label={({ cx, cy, midAngle, percentage, name }) => {
-          const radius = 60;
-          const x = cx + radius * Math.cos(-midAngle * (Math.PI / 180));
-          const y = cy + radius * Math.sin(-midAngle * (Math.PI / 180));
-          return (
-            <text x={x} y={y} fill="#8884d8" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-              {`${name} ${percentage}%`}
-            </text>
-          );
-        }}
-      >
-        {dataWithPercentages.map((entry, index) => (
-          <Cell key={index} fill={entry.fill} />
-        ))}
-      </Pie>
-      <Tooltip formatter={(value, name, props) => `${value} (${props.payload.percentage}%)`} />
-      <Legend />
-    </PieChart>
+    <div>
+      <ResponsiveContainer width="100%" height={600}>
+        <PieChart>
+          <Pie
+            dataKey="value"
+            data={[
+              { name: 'Fixed Data', value: fixedDataPercentage },
+              { name: 'Local Storage Data', value: localStoragePercentage },
+            ]}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            outerRadius={200}
+            fill="#FF444A"
+            
+          
+          >
+            {[
+              { name: 'Fixed Data', value: fixedDataPercentage },
+              { name: 'Local Storage Data', value: localStoragePercentage },
+            ].map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+            <Label
+              
+              value={`${localStoragePercentage.toFixed(1)}%`}
+              position="center"
+              fill="#FFFFFF"
+              fontSize={25}
+            />
+            <Label
+              value={`${fixedDataPercentage.toFixed(1)}%`}
+              position="top"
+              fill="#FFFFFF"
+              fontSize={25}
+              
+            />
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+      <div className=' flex justify-center items-center'>
+      <div className=' flex justify-center items-center'>
+        <p>Your Donation</p>
+        <div className=' bg-[#00C49F] p-2 w-24 m-2'>  </div>
+      </div>
+      <div className=' flex justify-center items-center m-3'>
+        <p>Total Donation</p>
+        <div className=' bg-[#FF444A] p-2 w-24 m-2'>  </div>
+      </div>
+      </div>
     </div>
   );
 };
