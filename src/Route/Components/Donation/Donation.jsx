@@ -36,6 +36,7 @@ const Donation = ({donateinf}) => {
             </button>
   </div>
 </div>
+          
         </div>
     );
 };

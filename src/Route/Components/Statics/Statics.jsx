@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
 
 const data = [
@@ -22,7 +22,7 @@ const dataWithPercentages = data.map((item, index) => ({
 const Statics = () => {
   return (
     <div className=' flex justify-center items-center'>
-      <PieChart width={500} height={500}>
+      <PieChart width={600} height={600}>
       <Pie
         data={dataWithPercentages}
         dataKey="value"
