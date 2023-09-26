@@ -3,6 +3,7 @@ import MainLayout from "./Components/MainLayout/MainLayout";
 import Home from "../Pages/Home/Home";
 import DonateDetails from "./Components/DonateDetails/DonateDetails";
 import Donation from "./Components/Donations/Donations";
+import Statics from "./Components/Statics/Statics";
 
 
 const myCreatedRoute =  createBrowserRouter([
@@ -32,6 +33,7 @@ const myCreatedRoute =  createBrowserRouter([
             },
             {
                 path : "/Statistics",
+                element: <Statics></Statics>
                 
             },
             

@@ -2,6 +2,9 @@
 import { Link, useParams } from "react-router-dom";
 import {useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from 'sweetalert2'
+
+
 
 const DonationDetail = ({carddetails}) => {
     // console.log(carddetails)
@@ -22,7 +25,13 @@ const DonationDetail = ({carddetails}) => {
     if (!donations) {
       addeddonation.push(carddetails);
       localStorage.setItem("donation", JSON.stringify(addeddonation));
-      
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } 
     
     else {
@@ -35,10 +44,22 @@ const DonationDetail = ({carddetails}) => {
 
         addeddonation.push(...donations, carddetails);
         localStorage.setItem("donation", JSON.stringify(addeddonation));
-      
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
        
       } else {
-        alert("dfghd")
+        
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'You Already Donate This',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
       }
 
     
@@ -80,7 +101,7 @@ const DonationDetail = ({carddetails}) => {
       </div> */}
       <div className="card mt-16 bg-base-100 shadow-xl bg-cover w-[1200px] ">
   <figure><img className=" w-full " src={Picture} alt="Shoes" /></figure>
-  <div className=" -mt-28 p-10 bg-black"><button onClick={handleDonateCare} className="p-3 rounded-md text-white " style={ButtonBg}>
+  <div className=" -mt-32 p-10 bg-black bg-opacity-30 bg-mix-blend-darken"><button onClick={handleDonateCare} className="p-3 rounded-md text-white " style={ButtonBg}>
             Donate {Price}
           </button></div>
   <div className="card-body">

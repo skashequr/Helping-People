@@ -7,7 +7,7 @@ const Cards = () => {
 //    console.log(cardsData)
     return (
         <div>
-           <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-8 mt-28">
+           <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-8 mt-16 p-8 max-w-screen-fit mx-auto justify-center items-center">
            {
                 cardsData.map(card => <Card key={card.id} card={card}></Card>)
             }

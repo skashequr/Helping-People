@@ -32,7 +32,7 @@ const Card = ({ card }) => {
     if (!donations) {
       addeddonation.push(card);
       localStorage.setItem("donation", JSON.stringify(addeddonation));
-      
+      alert("Sheikh okk add alaart")
     } 
     
     else {
@@ -45,10 +45,10 @@ const Card = ({ card }) => {
 
         addeddonation.push(...donations, card);
         localStorage.setItem("donation", JSON.stringify(addeddonation));
-      
+        alert("Sheikh okk add alaart")
        
       } else {
-        
+        alert("Sheikh okk add")
       }
 
     
