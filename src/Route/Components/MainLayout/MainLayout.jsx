@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 
 
 const MainLayout = () => {
+    
     return (
         <div>
             <NavBar></NavBar>

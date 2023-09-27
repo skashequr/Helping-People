@@ -1,20 +1,39 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Swal from "sweetalert2";
+import { createContext } from "react";
+export const AssetContext = createContext("gtyujtyjtyujtfgutfr") 
 
 const Hero = ({data}) => {
 
+const [searchitems,setSearchitems] = useState([])
     
     const inputRef = useRef(null);
     // console.log(data)
+
     function handleClick() {
+      
       console.log(inputRef.current.value);
-     const finddata = data.filter((detail) => detail.Category === inputRef.current.value)
+     const finddata = data.filter((detail) => detail.Category.toLowerCase() === inputRef.current.value.toLowerCase())
      console.log(finddata);
+     setSearchitems(finddata) 
+     
       if (inputRef.current) {
-        inputRef.current.value = ''; // Clear the input value
+        inputRef.current.value = '';
+      }
+      if (finddata.length === 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No Data Found in this name',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
+      
+        
       }
     }
     return (
-        <div>
+      <AssetContext.Provider value={searchitems}>
+                   <div>
           <div className="hero min-h-screen bg-slate-200 bg-blend-screen" style={{backgroundImage: 'url(https://i.ibb.co/JHXn16P/image.png)'}}>
   <div className=" "></div>
   <div className="hero-content text-center text-neutral-content">
@@ -32,7 +51,8 @@ name="message"  placeholder="Search here" className="input input-bordered text-b
   </div>
 </div>
         </div>
+      </AssetContext.Provider>
+
     );
 };
-
 export default Hero;

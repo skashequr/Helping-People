@@ -5,13 +5,14 @@ import Hero from "../../Route/Components/Hero/Hero";
 
 
 const Home = () => {
+    
     const data = useLoaderData()
    
     return (
         <div>
-           
             <Hero data={data}></Hero>
             <Cards></Cards>
+           
       
             
         </div>
